@@ -7,18 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] private CharacterView view;
 
-    private DirectionType directionType = DirectionType.Down;
-
-    private void Start()
-    {
-        view.SetMovementDirection(directionType);
-    }
-
     private void FixedUpdate()
     {
         Vector2 direction = inputsManager.Direction;
-
-        UpdateDirection(direction);
 
         bool isMoving = IsMoving(direction);
         view.SetAnimationsEnabled(isMoving);
@@ -40,30 +31,6 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void UpdateDirection(Vector2 direction)
-    {
-        DirectionType newDirectionType = GetDirectionType(direction, directionType);
-        if (newDirectionType != directionType)
-        {
-            directionType = newDirectionType;
-            view.SetMovementDirection(directionType);
-        }
-    }
-
-    private DirectionType GetDirectionType(Vector2 direction, DirectionType fallbackDirection)
-    {
-        if (direction.x != 0)
-        {
-            return direction.x > 0 ? DirectionType.Right : DirectionType.Left;
-        }
-
-        if (direction.y != 0)
-        {
-            return direction.y > 0 ? DirectionType.Up : DirectionType.Down;
-        }
-
-        return fallbackDirection;
-    }
 }
 
 
