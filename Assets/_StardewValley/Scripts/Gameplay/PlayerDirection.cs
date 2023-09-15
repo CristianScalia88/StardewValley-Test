@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerDirection : MonoBehaviour
@@ -5,6 +6,8 @@ public class PlayerDirection : MonoBehaviour
     [SerializeField] InputsManager inputsManager;
     [SerializeField] private CharacterView view;
 
+    public event Action<DirectionType> OnDirectionChanged;
+    
     private DirectionType directionType = DirectionType.Down;
 
     private void Start()
@@ -25,6 +28,7 @@ public class PlayerDirection : MonoBehaviour
         {
             directionType = newDirectionType;
             view.SetMovementDirection(directionType);
+            OnDirectionChanged?.Invoke(newDirectionType);
         }
     }
 
