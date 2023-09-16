@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] int slotIndex;
     [SerializeField] Image itemImage;
     [SerializeField] TMP_Text amountText;
+    [SerializeField] Button button;
 
     public void Setup(int slotIndex)
     {
@@ -26,6 +28,8 @@ public class ItemSlotUI : MonoBehaviour
         if (ItemsManager.Instance.TryGetItemById(itemInInventory.itemID, out ItemDefinition itemDefinition))
         {
             itemImage.sprite = itemDefinition.sprite;
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() => GameplayEvents.Instance.OnItemUsed?.Invoke(slotIndex));
         }
 
         string amountString = itemInInventory.amount > 1 ? itemInInventory.amount.ToString() : string.Empty;

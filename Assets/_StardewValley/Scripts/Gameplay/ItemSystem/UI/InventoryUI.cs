@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
         for (var i = 0; i < inventory.itemAmount.Length; i++)
         {
             ItemSlotUI itemSlot = Instantiate(slotPrefab, slotsContainer);
+            ItemInInventory item = inventory.itemAmount[i];
             itemSlot.Setup(i);
             slots.Add(itemSlot);
         }
