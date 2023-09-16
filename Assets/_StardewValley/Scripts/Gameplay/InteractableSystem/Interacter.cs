@@ -67,7 +67,7 @@ public class Interacter : MonoBehaviour
         if (interactable != null)
         {
             interactable.Interact();
-            OnInteractableChanged?.Invoke(interactable);
+            OnInteractableChanged?.Invoke(interactables.FirstOrDefault());
         }
     }
 }
