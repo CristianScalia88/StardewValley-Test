@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57b1dd4097be43b79163a61cccb2c1f0, type: 3}
-  m_Name: Fstr
+  m_Name: BlueCloths
   m_EditorClassIdentifier: 
   type: 1
-  runtimeController: {fileID: 22100000, guid: 1699a29af8671534694e9b26e71de9d2, type: 2}
+  runtimeController: {fileID: 22100000, guid: 78d694cef7ab5e64bb7dcdef5206bea5, type: 2}

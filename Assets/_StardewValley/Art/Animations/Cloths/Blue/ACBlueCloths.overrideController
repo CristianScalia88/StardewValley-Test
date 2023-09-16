@@ -6,14 +6,14 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fstr
+  m_Name: ACBlueCloths
   m_Controller: {fileID: 9100000, guid: e830cc3c31e761840af13ed10923152a, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 002560c63a87ed8428cf78d2276f27c4, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: d538ae432ab4f9a4da19a02160784d77, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7096aeaddb9bfad4b974316110731a29, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 75738acf8cc4bee4d82dac6cdf4bea57, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 88d4a98b711af56499cd4442653d46ac, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bc9b204e8adaf9d4e87d2216bc8b034d, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 66188539633c39944b689b09a3243037, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 09300102fb47c894db77c30d8041437e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 436e0059af7a37e489c968efd53aa5e2, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 095d75ae4650f2c47bf0856856ac26f1, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c2461c726a6c53847a03de7a2c147f49, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfb338c2e12b0a446a5cbb26b86c2a98, type: 2}
