@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ClothesBaseShopUI : BaseShopUI
@@ -9,7 +10,8 @@ public class ClothesBaseShopUI : BaseShopUI
     [SerializeField] private ShopOptionUI sellOption;
     [SerializeField] private ShopOptionUI leaveOption;
     [SerializeField] private GameObject itemsPanel;
-    
+    [SerializeField] private TMP_Text panelTitle;
+
     [Header("Items")]
     [SerializeField] private Transform itemsContainer;
     [SerializeField] private ShopItemUI shopItemUIPrefab;
@@ -60,11 +62,16 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private void OnLeavePressed()
     {
+        itemsPanel.gameObject.SetActive(false);
         Close();
+        buyOption.OnPointerExit(null);
+        sellOption.OnPointerExit(null);
+        leaveOption.OnPointerExit(null);
     }
 
     private void OnSellPanelOptionPressed()
     {
+        panelTitle.text = "Sell";
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
         CreateItems(PlayerInventory.itemAmount, SellItem);
@@ -79,6 +86,7 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private void OmBuyPanelOptionPressed()
     {
+        panelTitle.text = "Buy";
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
         CreateItems(ItemShopDefinition.items, BuyItem);
