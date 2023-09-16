@@ -8,9 +8,9 @@ public class KeyboardCheats : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            GameplayManager.Instance.playerInventory.AddItem(new ItemInInventory(itemDef.id, 10));
+            CurrencyManager.Instance.AddCoins(100);
         }
     }
     #endif

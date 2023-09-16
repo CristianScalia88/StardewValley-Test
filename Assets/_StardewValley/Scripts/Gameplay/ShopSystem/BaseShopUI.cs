@@ -7,7 +7,7 @@ public class BaseShopUI : MonoBehaviour
     [SerializeField] protected ShopDefinition shopDefinition;
     
     [SerializeField] Image portraitImage;
-    [SerializeField] TMP_Text messageText;
+    [SerializeField] protected  TMP_Text messageText;
 
     public void Setup(ShopDefinition shopDefinition)
     {

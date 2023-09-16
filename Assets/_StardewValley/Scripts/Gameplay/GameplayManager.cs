@@ -9,13 +9,16 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] InventoryUI inventoryUI;
 
     public Inventory playerInventory;
-    public GameplayEvents GameplayEvents;
+    
+    private GameplayEvents GameplayEvents;
+    private CurrencyManager currencyManager;
     
     private void Awake()
     {
         Instance = this;
         itemsManager.Initialize();
         GameplayEvents = new GameplayEvents();
+        currencyManager = new CurrencyManager();
         
         playerInventory = GetInventory();
         inventoryUI.Initialize(playerInventory);

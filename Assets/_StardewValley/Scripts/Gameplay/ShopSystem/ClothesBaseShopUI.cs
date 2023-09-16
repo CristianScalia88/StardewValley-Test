@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ClothesBaseShopUI : BaseShopUI
@@ -12,16 +13,23 @@ public class ClothesBaseShopUI : BaseShopUI
     [Header("Items")]
     [SerializeField] private Transform itemsContainer;
     [SerializeField] private ShopItemUI shopItemUIPrefab;
+
+    private Coroutine temporalMessageCoroutine;
     
     private void Start()
     {
-        buyOption.Setup("Buy", OnBuyPressed);
-        sellOption.Setup("Sell", OnSellPressed);
+        buyOption.Setup("Buy", OmBuyPanelOptionPressed);
+        sellOption.Setup("Sell", OnSellPanelOptionPressed);
         leaveOption.Setup("Leave", OnLeavePressed);
     }
 
     private void SellItem(int slotIndex)
     {
+        ItemInInventory item = PlayerInventory.itemAmount[slotIndex];
+        if (ItemsManager.Instance.TryGetItemById(item.itemID, out ItemDefinition itemDef))
+        {
+            CurrencyManager.Instance.AddCoins(itemDef.price);
+        }
         PlayerInventory.RemoveItem(PlayerInventory.itemAmount[slotIndex]);
     }
 
@@ -53,7 +61,7 @@ public class ClothesBaseShopUI : BaseShopUI
         Close();
     }
 
-    private void OnSellPressed()
+    private void OnSellPanelOptionPressed()
     {
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
@@ -64,10 +72,10 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private void OnItemRemoved(ItemInInventory itemInInventory, int slotIndex)
     {
-        OnSellPressed();
+        OnSellPanelOptionPressed();
     }
 
-    private void OnBuyPressed()
+    private void OmBuyPanelOptionPressed()
     {
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
@@ -79,13 +87,35 @@ public class ClothesBaseShopUI : BaseShopUI
         ItemInInventory itemToBuy = ItemShopDefinition.items[slotIndex];
         if (ItemsManager.Instance.TryGetItemById(itemToBuy.itemID, out var itemDef))
         {
-            if (PlayerInventory.AddItem(new ItemInInventory(itemToBuy.itemID, itemToBuy.amount)))
+            if (!CurrencyManager.Instance.CanAfford(itemDef.price))
             {
-                Debug.Log("Item Added");
+                ShowTemporalMessage("Insufficient funds, try again later.");
+                return;
             }
+            if (!PlayerInventory.AddItem(new ItemInInventory(itemToBuy.itemID, itemToBuy.amount)))
+            {
+                ShowTemporalMessage("Inventory full, make some room.");
+                return;
+            }
+            CurrencyManager.Instance.RemoveCoins(itemDef.price);
         }
     }
-    
+
+    private void ShowTemporalMessage(string message)
+    {
+        if(temporalMessageCoroutine != null)
+            StopCoroutine(temporalMessageCoroutine);
+        
+        temporalMessageCoroutine = StartCoroutine(ThrowTemporalMessageCoroutine(message));
+    }
+
+    private IEnumerator ThrowTemporalMessageCoroutine(string message)
+    {
+        messageText.text = message;
+        yield return new WaitForSeconds(5);
+        messageText.text = ItemShopDefinition.shopkeeperMessage;
+    }
+
     ItemsShopDefinition ItemShopDefinition => (ItemsShopDefinition) shopDefinition;
     Inventory PlayerInventory => GameplayManager.Instance.playerInventory;
 
