@@ -7,6 +7,8 @@ public class InteractableUI : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private TMP_Text interactableMessageText;
     
+    const string IS_OPEN = "IsOpen";
+
     void Start()
     {
         interacter.OnInteractableChanged += OnInteractChanged;
@@ -16,10 +18,10 @@ public class InteractableUI : MonoBehaviour
     {
         if (obj == null)
         {
-            animator.SetBool("IsOpen", false);
+            animator.SetBool(IS_OPEN, false);
             return;
         }
-        animator.SetBool("IsOpen", true);
+        animator.SetBool(IS_OPEN, true);
         interactableMessageText.text = obj.Message;
     }
 

@@ -4,7 +4,7 @@ public class DroppedCoin : Interactable
 {
     public int amount;
     
-    const string message = "Pick Up";
+    const string PICK_UP = "Pick Up";
 
     protected override void OnInteract()
     {
@@ -12,5 +12,5 @@ public class DroppedCoin : Interactable
         Destroy(gameObject);
     }
 
-    public override string Message => message;
+    public override string Message => PICK_UP;
 }

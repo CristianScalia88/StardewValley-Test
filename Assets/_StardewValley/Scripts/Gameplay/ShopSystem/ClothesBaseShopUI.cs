@@ -18,13 +18,19 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private Coroutine temporalMessageCoroutine;
     private Color startMessageColor;
-    
+
+    const string BUY = "Buy";
+    const string SELL = "Sell";
+    const string LEAVE = "Leave";
+    const string NO_COINS = "Insufficient funds, try again later.";
+    const string NO_SPACE = "Inventory full, make some room.";
+
     private void Start()
     {
         startMessageColor = messageText.color;
-        buyOption.Setup("Buy", OmBuyPanelOptionPressed);
-        sellOption.Setup("Sell", OnSellPanelOptionPressed);
-        leaveOption.Setup("Leave", OnLeavePressed);
+        buyOption.Setup(BUY, OmBuyPanelOptionPressed);
+        sellOption.Setup(SELL, OnSellPanelOptionPressed);
+        leaveOption.Setup(LEAVE, OnLeavePressed);
     }
 
     private void SellItem(int slotIndex)
@@ -71,7 +77,7 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private void OnSellPanelOptionPressed()
     {
-        panelTitle.text = "Sell";
+        panelTitle.text = SELL;
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
         CreateItems(PlayerInventory.itemAmount, SellItem);
@@ -86,7 +92,7 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private void OmBuyPanelOptionPressed()
     {
-        panelTitle.text = "Buy";
+        panelTitle.text = BUY;
         itemsPanel.gameObject.SetActive(true);
         ClearItems();
         CreateItems(ItemShopDefinition.items, BuyItem);
@@ -99,12 +105,12 @@ public class ClothesBaseShopUI : BaseShopUI
         {
             if (!CurrencyManager.Instance.CanAfford(itemDef.price))
             {
-                ShowTemporalMessage("Insufficient funds, try again later.");
+                ShowTemporalMessage(NO_COINS);
                 return;
             }
             if (!PlayerInventory.AddItem(new ItemInInventory(itemToBuy.itemID, itemToBuy.amount)))
             {
-                ShowTemporalMessage("Inventory full, make some room.");
+                ShowTemporalMessage(NO_SPACE);
                 return;
             }
             CurrencyManager.Instance.RemoveCoins(itemDef.price);

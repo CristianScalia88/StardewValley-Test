@@ -7,13 +7,14 @@ public class GameplayManager : MonoBehaviour
     
     [SerializeField] ItemsManager itemsManager;
     [SerializeField] InventoryUI inventoryUI;
-    [SerializeField] GameObject equipItemTutorial;
 
     public Inventory playerInventory;
     
     private GameplayEvents GameplayEvents;
     private CurrencyManager currencyManager;
     
+    const string INVENTORY_KEY = "Inventory";
+
     private void Awake()
     {
         Instance = this;
@@ -28,12 +29,12 @@ public class GameplayManager : MonoBehaviour
 
     private void SaveInventoryData(ItemInInventory itemInInventory, int slotIndex)
     {
-        PlayerPrefs.SetString("Inventory", JsonUtility.ToJson(playerInventory));
+        PlayerPrefs.SetString(INVENTORY_KEY, JsonUtility.ToJson(playerInventory));
     }
 
     private Inventory GetInventory()
     {
-        string json = PlayerPrefs.GetString("Inventory", "");
+        string json = PlayerPrefs.GetString(INVENTORY_KEY, "");
         if (string.IsNullOrEmpty(json))
         {
             Inventory newInventory = new Inventory();

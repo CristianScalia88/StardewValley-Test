@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class CurrencyManager
 {
+    const string COINS_KEY = "Coins";
+
     public int TotalCoins
     {
-        get => PlayerPrefs.GetInt("Coins", 0);
-        set => PlayerPrefs.SetInt("Coins", value);
+        get
+        {
+            return PlayerPrefs.GetInt(COINS_KEY, 0);
+        }
+        set => PlayerPrefs.SetInt(COINS_KEY, value);
     }
 
     public event Action<int> OnCoinsAdded;

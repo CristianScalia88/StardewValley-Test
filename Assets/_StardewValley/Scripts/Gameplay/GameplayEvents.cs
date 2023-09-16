@@ -1,5 +1,3 @@
-using System;
-
 public class GameplayEvents
 {
     public static GameplayEvents Instance;
