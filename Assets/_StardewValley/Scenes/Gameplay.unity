@@ -239,7 +239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsManager: {fileID: 11400000, guid: 6434d2dd1efeaa54492bf8fe8d2f0b86, type: 2}
   inventoryUI: {fileID: 538846228}
-  characterView: {fileID: 1872291107}
   playerInventory:
     itemAmount:
     - itemID: 0
@@ -2753,6 +2752,7 @@ GameObject:
   - component: {fileID: 1872291103}
   - component: {fileID: 1872291106}
   - component: {fileID: 1872291105}
+  - component: {fileID: 1872291110}
   - component: {fileID: 1872291107}
   - component: {fileID: 1872291108}
   - component: {fileID: 1872291109}
@@ -2872,6 +2872,19 @@ MonoBehaviour:
   inputsManager: {fileID: 511201571}
   interactCollider: {fileID: 507457095}
   playerDirection: {fileID: 1872291108}
+--- !u!114 &1872291110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872291102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfc78a2e7444698919be84857873115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterView: {fileID: 1872291107}
 --- !u!1 &1967493019
 GameObject:
   m_ObjectHideFlags: 0

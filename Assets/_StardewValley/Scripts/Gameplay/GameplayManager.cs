@@ -7,7 +7,6 @@ public class GameplayManager : MonoBehaviour
     
     [SerializeField] ItemsManager itemsManager;
     [SerializeField] InventoryUI inventoryUI;
-    [SerializeField] CharacterView characterView;
 
     public Inventory playerInventory;
     public GameplayEvents GameplayEvents;
@@ -21,19 +20,6 @@ public class GameplayManager : MonoBehaviour
         playerInventory = GetInventory();
         inventoryUI.Initialize(playerInventory);
         playerInventory.OnItemChanged += SaveInventoryData;
-        GameplayEvents.Instance.OnItemUsed += OnItemUsed;
-    }
-
-    private void OnItemUsed(int slotIndex)
-    {
-        ItemInInventory item = playerInventory.itemAmount[slotIndex];
-        if (itemsManager.TryGetItemById(item.itemID, out ItemDefinition itemDefinition))
-        {
-            if (itemDefinition is ItemEquipementDefinition itemEquipment)
-            {
-                characterView.SetEquipment(itemEquipment.equipementView);
-            }
-        }
     }
 
     private void SaveInventoryData(ItemInInventory itemInInventory, int slotIndex)

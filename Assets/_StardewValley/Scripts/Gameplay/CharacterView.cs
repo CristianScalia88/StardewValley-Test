@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour
@@ -60,7 +61,7 @@ public class CharacterView : MonoBehaviour
             case DirectionType.Left:
                 SetAnimatorsState(LEFT_STATE);
                 break;
-        }
+            }
     }
 
     public void SetAnimationsEnabled(bool enabled)
@@ -84,5 +85,17 @@ public class CharacterView : MonoBehaviour
         clothsAnimator.Play(state,0,0);
         hairAnimator.Play(state,0,0);
         lastDirectionState = state;
+    }
+
+    public void RemoveCloths(object o)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SetDefaultEquipment(EquipmentType equipmentType)
+    {
+        EquipementView equipment = StartingEquipment.FirstOrDefault(e => e.type == equipmentType);
+        if(equipment != null)
+            SetEquipment(equipment);
     }
 }
