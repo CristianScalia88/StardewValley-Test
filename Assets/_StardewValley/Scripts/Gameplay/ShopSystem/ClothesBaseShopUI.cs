@@ -15,9 +15,11 @@ public class ClothesBaseShopUI : BaseShopUI
     [SerializeField] private ShopItemUI shopItemUIPrefab;
 
     private Coroutine temporalMessageCoroutine;
+    private Color startMessageColor;
     
     private void Start()
     {
+        startMessageColor = messageText.color;
         buyOption.Setup("Buy", OmBuyPanelOptionPressed);
         sellOption.Setup("Sell", OnSellPanelOptionPressed);
         leaveOption.Setup("Leave", OnLeavePressed);
@@ -111,9 +113,11 @@ public class ClothesBaseShopUI : BaseShopUI
 
     private IEnumerator ThrowTemporalMessageCoroutine(string message)
     {
+        messageText.color = Color.red;
         messageText.text = message;
         yield return new WaitForSeconds(5);
         messageText.text = ItemShopDefinition.shopkeeperMessage;
+        messageText.color = startMessageColor;
     }
 
     ItemsShopDefinition ItemShopDefinition => (ItemsShopDefinition) shopDefinition;
