@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1803f168ac4a4bbebb67e1c3a02f85aa, type: 3}
   m_Name: Cloths_Blue
   m_EditorClassIdentifier: 
-  id: 3
+  id: 1
   name: Blue Cloths
   sprite: {fileID: 21300000, guid: 4983ff1daa8f27f4d84f35bd2d8c43ad, type: 3}
   price: 4

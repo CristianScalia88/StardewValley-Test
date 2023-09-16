@@ -5,7 +5,7 @@ public class CurrencyManager
 {
     public int TotalCoins
     {
-        get => PlayerPrefs.GetInt("Coins", 20);
+        get => PlayerPrefs.GetInt("Coins", 0);
         set => PlayerPrefs.SetInt("Coins", value);
     }
 
