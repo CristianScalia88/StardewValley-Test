@@ -8,6 +8,8 @@ public class InputsManager : MonoBehaviour
 {
     public static InputsManager Instance;
     public Vector2 Direction => gameplayInputMap.Player.Movement.ReadValue<Vector2>();
+    public bool IsEnabled => !inputBlockers.Any();
+
     public event Action OnInteractPressed;
 
     private HashSet<Object> inputBlockers;

@@ -7,6 +7,7 @@ public class GameplayManager : MonoBehaviour
     
     [SerializeField] ItemsManager itemsManager;
     [SerializeField] InventoryUI inventoryUI;
+    [SerializeField] GameObject equipItemTutorial;
 
     public Inventory playerInventory;
     
