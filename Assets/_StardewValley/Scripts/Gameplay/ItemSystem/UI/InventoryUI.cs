@@ -7,22 +7,33 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform slotsContainer;
     
     private List<ItemSlotUI> slots;
+    private Inventory inventory;
     
     public void Initialize(Inventory inventory)
     {
+        this.inventory = inventory;
         slots = new List<ItemSlotUI>();
-        SetupInitialItems(inventory);
-        inventory.OnItemAdded += SetupItem;
+        InitializeSlots(inventory);
+        UpdateItems(inventory);
+        inventory.OnItemChanged += SetupItem;
     }
 
-    private void SetupInitialItems(Inventory inventory)
+    private void InitializeSlots(Inventory inventory)
     {
         for (var i = 0; i < inventory.itemAmount.Length; i++)
         {
             ItemSlotUI itemSlot = Instantiate(slotPrefab, slotsContainer);
-            slots.Add(itemSlot);
             itemSlot.Setup(i);
-            if (inventory.HasItem(i))
+            slots.Add(itemSlot);
+        }
+    }
+
+    private void UpdateItems(Inventory inventory)
+    {
+        for (var i = 0; i < inventory.itemAmount.Length; i++)
+        {
+            ItemSlotUI itemSlot = slots[i];
+            if (inventory.HasItemAt(i))
             {
                 itemSlot.SetItem(inventory.itemAmount[i]);
             }
@@ -35,7 +46,7 @@ public class InventoryUI : MonoBehaviour
 
     private void SetupItem(ItemInInventory item, int slotIndex)
     {
-        slots[slotIndex].SetItem(item);
+        UpdateItems(inventory);
     }
 
 }

@@ -8,6 +8,7 @@ public class Inventory
 
     public event Action<ItemInInventory, int> OnItemAdded;
     public event Action<ItemInInventory, int> OnItemRemoved;
+    public event Action<ItemInInventory, int> OnItemChanged;
 
 
     public static readonly ItemInInventory NULL_ITEM = new ItemInInventory(-1, -1);
@@ -25,7 +26,7 @@ public class Inventory
         emptySlotIndex = -1;
         for (int i = 0; i < MAX_SLOTS; i++)
         {
-            if (!HasItem(i))
+            if (!HasItemAt(i))
             {
                 emptySlotIndex = i;
                 return true;
@@ -41,6 +42,7 @@ public class Inventory
         {
             itemAmount[emptySlotIndex] = item;
             OnItemAdded?.Invoke(item, emptySlotIndex);
+            OnItemChanged?.Invoke(item, emptySlotIndex);
             return true;
         }
 
@@ -56,6 +58,7 @@ public class Inventory
                 ItemInInventory removedItem = itemAmount[i];
                 itemAmount[i] = NULL_ITEM;
                 OnItemRemoved?.Invoke(removedItem, i);
+                OnItemChanged?.Invoke(removedItem, i);
                 return true;
             }
         }
@@ -63,7 +66,7 @@ public class Inventory
         return false;
     }
 
-    public bool HasItem(int slotIndex)
+    public bool HasItemAt(int slotIndex)
     {
         return itemAmount[slotIndex].itemID != NULL_ITEM.itemID;
     }

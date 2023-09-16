@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
         
         playerInventory = GetInventory();
         inventoryUI.Initialize(playerInventory);
-        playerInventory.OnItemAdded += SaveInventoryData;
+        playerInventory.OnItemChanged += SaveInventoryData;
     }
 
     private void SaveInventoryData(ItemInInventory itemInInventory, int slotIndex)
