@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c18e4e346614a4881dadb7e4991e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
   slotPrefab: {fileID: 4057014762079978845, guid: aa4e62ece472b1e4885446a3f0793881, type: 3}
   slotsContainer: {fileID: 3301061203844570002}
 --- !u!1 &5515450330619886302
@@ -65,6 +64,7 @@ GameObject:
   - component: {fileID: 6863831119019056248}
   - component: {fileID: 8453010718475205073}
   - component: {fileID: 3715282789905205462}
+  - component: {fileID: 8082102490827034391}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -88,7 +88,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.594, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5651047589409452174
@@ -169,3 +169,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &8082102490827034391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515450330619886302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 900
+  m_PreferredHeight: 100
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1

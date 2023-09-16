@@ -7,6 +7,8 @@ public class Inventory
     public ItemInInventory[] itemAmount = new ItemInInventory[MAX_SLOTS];
 
     public event Action<ItemInInventory, int> OnItemAdded;
+    public event Action<ItemInInventory, int> OnItemRemoved;
+
 
     public static readonly ItemInInventory NULL_ITEM = new ItemInInventory(-1, -1);
 
@@ -51,7 +53,9 @@ public class Inventory
         {
             if (itemAmount[i] == item)
             {
+                ItemInInventory removedItem = itemAmount[i];
                 itemAmount[i] = NULL_ITEM;
+                OnItemRemoved?.Invoke(removedItem, i);
                 return true;
             }
         }
